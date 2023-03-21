@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Scan Results{% endblock %}
+
+{% block content %}
+  <h1>Scan Results</h1>
+  <p>The following text was detected in the image:</p>
+  <ul>
+      <li>Cedula: {{ cedula }}</li>
+  </ul>
+{% endblock %}

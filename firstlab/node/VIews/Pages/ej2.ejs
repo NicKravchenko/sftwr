@@ -1,0 +1,37 @@
+<%- include('../Partials/header.ejs') %>
+
+<body>
+    <h1>Currency convertor</h1>
+    <p>Lets convert some currencies</p>
+
+    <form action="/ej2/UStoRD" method="POST">
+        <label for="usToRd">US</label>
+        <input type="number" id="usToRd" name="usToRd">
+        <p><%= rdFromUs %></p>
+        <button type="submit">Convert</button>
+    </form>
+
+    <form action="/ej2/RDtoUS" method="POST">
+        <label for="rdToUs">RD</label>
+        <input type="number" id="rdToUs" name="rdToUs">
+        <p><%= usFromRd %></p>
+        <button type="submit">Convert</button>
+    </form>
+
+
+    <form action="/ej2/EUtoRD" method="POST">
+        <label for="euToRd">EU</label>
+        <input type="number" id="euToRd" name="euToRd">
+        <p><%= rdFromEu %></p>
+        <button type="submit">Convert</button>
+    </form>
+
+    <form action="/ej2/RDtoEU" method="POST">
+        <label for="rdToEu">RD</label>
+        <input type="number" id="rdToEu" name="rdToEu">
+        <p><%= euFromRd %></p>
+        <button type="submit">Convert</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<%- include('../Partials/header.ejs') %>
+
+<body>
+    <h1>Ascii convertor</h1>
+    <form action="/asc/changeMode" method="POST">
+        <input type="hidden" name="mode" id="mode" value="<%if (mode === 'ascToChar'){%>charToAsc<%}else{%>ascToChar<%}%>">
+        <button type="submit"><=></button>
+    </form>
+    <%if (mode === "ascToChar"){%>
+    <form action="/asc/ascToChar" method="POST">
+        <input type="hidden" name="mode" id="mode" value="<%= mode %>">
+        <label for="asc">Asc code</label>
+        <input type="number" id="asc" name="asc">
+        <p><%= char %></p>
+        <button type="submit">Translate</button>
+    </form>
+    <%} else { %>
+        <form action="/asc/charToAsc" method="POST">
+            <input type="hidden" name="mode" id="mode" value="<%=mode%>">
+            <label for="char">Character</label>
+            <input type="text" id="char" name="char" maxlength="1">
+            <p><%= asc %></p>
+            <button type="submit">Translate</button>
+        </form>
+    <% } %>
+</body>
+</html>

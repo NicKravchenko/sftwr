@@ -1,0 +1,13 @@
+<%- include('../Partials/header.ejs') %>
+
+<body>
+    <h1>Number convertor</h1>
+    <p>Lets convert human numbers to a computer language</p>
+    <form action="/number" method="POST">
+        <label for="decimalNum">Decimal number</label>
+        <input type="number" id="decimalNum" name="decimalNum" value="<%=decimalNum ? decimalNum : 0%>">
+        <p>Binary number: <%=binaryNum%></p>
+        <button type="submit">Translate</button>
+    </form>
+</body>
+</html>

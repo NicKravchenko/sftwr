@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas y Premios Óscar</title>
+    <script src="{% static 'ej1/js/indexddb.js' %}" defer></script>
+</head>
+<body>
+    <h1>Películas y Premios Óscar</h1>
+    <!-- Agrega este contenido dentro del body -->
+<div>
+    <form id="pelicula-form">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        <label for="premios">Premios Óscar:</label>
+        <input type="number" id="premios" name="premios" required>
+        <button type="submit">Agregar película</button>
+    </form>
+</div>
+<div>
+    <h2>Lista de películas</h2>
+    <ul id="pelicula-list"></ul>
+</div>
+
+<script>
+    document.getElementById('pelicula-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const titulo = document.getElementById('titulo').value;
+        const premios = parseInt(document.getElementById('premios').value);
+        const pelicula = { titulo, premios };
+        addPelicula(pelicula);
+        loadPeliculas(); // Recarga la lista de películas
+    });
+
+    function loadPeliculas() {
+        getPeliculas((peliculas) => {
+            const peliculaList = document.getElementById('pelicula-list');
+            peliculaList.innerHTML = ''; // Limpia la lista actual
+            peliculas.forEach((pelicula) => {
+                const li = document.createElement('li');
+                li.textContent = `${pelicula.titulo} - ${pelicula.premios} premios Óscar`;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.addEventListener('click', () => {
+                    deletePelicula(pelicula.id, () => {
+                        loadPeliculas(); // Recarga la lista de películas
+                    });
+                });
+                li.appendChild(deleteButton);
+                peliculaList.appendChild(li);
+            });
+        });
+    }
+
+    // Carga las películas al iniciar la página
+    window.addEventListener('DOMContentLoaded', loadPeliculas);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ persona.nombres }} {{ persona.apellidos }}</h1>
+  {% if foto_url %}
+    <img src="{{ foto_url }}" alt="Foto de {{ persona.nombres }} {{ persona.apellidos }}">
+  {% else %}
+    <p>No se encontró la foto para esta persona.</p>
+  {% endif %}
+{% endblock %}

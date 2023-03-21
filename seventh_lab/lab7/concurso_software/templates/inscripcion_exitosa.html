@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Inscripción exitosa</title>
+</head>
+<body>
+  <h1>¡Inscripción exitosa!</h1>
+  <p>Gracias por inscribirte, {{ concursante.nombre }}.</p>
+  <p>
+    Descarga tu comprobante de inscripción
+    <a href="{% url 'descargar_comprobante' concursante.id %}">aquí</a>.
+  </p>
+</body>
+</html>

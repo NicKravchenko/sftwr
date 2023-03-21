@@ -1,0 +1,13 @@
+<%- include('../Partials/header.ejs') %>
+
+<body>
+    <h1>Cerveceria</h1>
+    <form action="/ej3/confirm" method="POST">
+        <label for="age">Your age</label>
+        <input type="number" id="age" name="age">
+        <button type="submit">Confirm</button>
+    </form>
+    <p><%= message %></p>
+
+</body>
+</html>

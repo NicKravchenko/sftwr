@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <style>
+      .slider {
+        width: 400px;
+        margin: 20px auto;
+        text-align: center;
+        padding: 20px;
+        color: white;
+      }
+      .container {
+        width: 500px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        overflow: hidden;
+        border: 10px solid #ffffff;
+        border-radius: 8px;
+        box-shadow: -1px 5px 15px black;
+      }
+
+      /*Area of images*/
+      .wrapper {
+        width: 100%;
+        display: flex;
+        animation: slide 16s infinite;
+      }
+
+      img {
+        width: 100%;
+      }
+      /*Animation activated by keyframes*/
+      @keyframes slide {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(0);
+        }
+        30% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(-100%);
+        }
+        55% {
+          transform: translateX(-200%);
+        }
+        75% {
+          transform: translateX(-200%);
+        }
+        80% {
+          transform: translateX(-300%);
+        }
+        100% {
+          transform: translateX(-300%);
+        }
+      }
+    </style>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"
+    />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"
+    />
+  </head>
+
+  <header>
+    <ul>
+      <li style="display: inline"><a href="/">Main</a></li>
+      <li style="display: inline"><a href="/ej1/">ej1</a></li>
+      <li style="display: inline"><a href="/ej2/">ej2</a></li>
+      <li style="display: inline"><a href="/ej3/">ej3</a></li>
+      <li style="display: inline"><a href="/ej4/">ej4</a></li>
+    </ul>
+  </header>
+</html>
