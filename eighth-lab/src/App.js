@@ -1,23 +1,51 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [detenidos, setDetenidos] = useState([]);
+  const [nombre, setNombre] = useState('');
+  const [cargo, setCargo] = useState('');
+
+  const agregarDetenido = (e) => {
+    e.preventDefault();
+
+    setDetenidos([...detenidos, { nombre, cargo }]);
+    setNombre('');
+    setCargo('');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Registro de Detenidos - Operación Calamar</h1>
+      <form onSubmit={agregarDetenido}>
+        <label>
+          Nombre:
+          <input
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Cargo:
+          <input
+            type="text"
+            value={cargo}
+            onChange={(e) => setCargo(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Agregar Detenido</button>
+      </form>
+      <h2>Lista de Detenidos</h2>
+      <ul>
+        {detenidos.map((detenido, index) => (
+          <li key={index}>
+            {detenido.nombre} - {detenido.cargo}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
