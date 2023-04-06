@@ -1,45 +1,66 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
 const cors = require('cors');
 
+const PORT = process.env.PORT || 3000;
 const app = express();
+const mongoString = process.env.MONGODB_URI;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000'
+};
+app.use(cors(corsOptions));
 
-// Routes will be added here
 
-const PORT = process.env.PORT || 5000;
+//Mongo config
+mongoose.connect(mongoString);
+const db = mongoose.connection;
+
+db.on("error", (error) => {
+  console.log(error);
+});
+
+db.once("connected", () => {
+  console.log("Database Connected");
+});
+
+app.use(express.json());
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server Started at ${PORT}`);
 });
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-let db;
-
-client.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to MongoDB");
-
-  db = client.db('<your_db_name>');
-
-  app.locals.db = db;
+var detenidoSchema = new mongoose.Schema({
+  nombre: String,
+  cargo: String,
 });
 
-app.post('/detained', (req, res) => {
-    const { nombre, cargo } = req.body;
-    const collection = req.app.locals.db.collection('detenidos');
+var Detenido = mongoose.model("Detenido", detenidoSchema);
 
-    collection.insertOne({ nombre, cargo }, (err, result) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(201).send(result.ops[0]);
-      }
+app.post("/api/detenidos", (req, res) => {
+  var detenido = new Detenido(req.body);
+  detenido
+    .save()
+    .then((item) => {
+      res.status(200).send({
+        status: "ok",
+        message: "Detenido guardado",
+        data: item,
+      });
+      console.log(item);
+    })
+    .catch((err) => {
+      res.status(400).send("unable to save to database");
     });
-  });
+});
+
+app.get("/api/detenidos", async (req, res) => {
+  try {
+    const detenidos = await Detenido.find({});
+    res.send(detenidos);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error retrieving detenidos");
+  }
+});

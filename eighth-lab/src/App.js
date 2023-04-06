@@ -1,52 +1,23 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import "./App.css";
+import RegisterDetenidos from "./pages/RegisterDetenidos";
+import ReportDetenidos from "./pages/ReportDetenidos";
+import Header from "./components/Header";
 
 function App() {
-  const [detenidos, setDetenidos] = useState([]);
-  const [nombre, setNombre] = useState('');
-  const [cargo, setCargo] = useState('');
-
-  const agregarDetenido = (e) => {
-    e.preventDefault();
-
-    setDetenidos([...detenidos, { nombre, cargo }]);
-    setNombre('');
-    setCargo('');
-  };
-
   return (
-    <div className="App">
-      <h1>Registro de Detenidos - Operación Calamar</h1>
-      <form onSubmit={agregarDetenido}>
-        <label>
-          Nombre:
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Cargo:
-          <input
-            type="text"
-            value={cargo}
-            onChange={(e) => setCargo(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Agregar Detenido</button>
-      </form>
-      <h2>Lista de Detenidos</h2>
-      <ul>
-        {detenidos.map((detenido, index) => (
-          <li key={index}>
-            {detenido.nombre} - {detenido.cargo}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<></>} />
+        <Route path="/detenidos" element={<RegisterDetenidos/>} />
+        <Route path="/report" element={<ReportDetenidos/>} />
+      </Routes>
+      </div>
+    </Router>
   );
 }
 
