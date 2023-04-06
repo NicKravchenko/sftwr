@@ -1,13 +1,15 @@
 import React from 'react';
+import "./Header.css";
 
 function Header() {
   return (
     <header>
       <h1>My App</h1>
-      <nav>
-        <ul>
-          <li><a href="/detenidos">Detenidos</a></li>
-          <li><a href="/report">Report</a></li>
+      <nav className='headers'>
+        <ul className='list'>
+          <li className='list-element'><a href="/detenidos">Registrar</a></li>
+          <li className='list-element'><a href="/report">Report</a></li>
+          <li className='list-element'><a href="/list">List</a></li>
         </ul>
       </nav>
     </header>
