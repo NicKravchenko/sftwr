@@ -10,6 +10,7 @@ function Header() {
           <li className='list-element'><a href="/detenidos">Registrar</a></li>
           <li className='list-element'><a href="/report">Report</a></li>
           <li className='list-element'><a href="/list">List</a></li>
+          <li className='list-element'><a href="/intec">Intec inscr</a></li>
         </ul>
       </nav>
     </header>

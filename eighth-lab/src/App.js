@@ -7,6 +7,7 @@ import ReportDetenidos from "./pages/ReportDetenidos";
 import DetenidosList from "./pages/DetenidosList";
 import Header from "./components/Header";
 import Detenido from "./components/Detenido";
+import InscriptionForm  from "./pages/InscriptionForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<></>} />
         <Route path="/detenidos" element={<RegisterDetenidos/>} />
         <Route path="/report" element={<ReportDetenidos/>} />
+        <Route path="/intec" element={<InscriptionForm />} />
         <Route path="/list/*" element={<DetenidosList/>} />
         <Route path="/list/:id" element={<Detenido/>}/>
 
